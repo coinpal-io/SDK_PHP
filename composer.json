@@ -1,0 +1,17 @@
+{
+    "name": "coinpal/coinpal-php",
+    "description": "coinpal payment sdk",
+    "authors": [
+        {
+            "name": "chenrj",
+            "email": "tech@glocash.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "coinpal\\": "src"
+        }
+    },
+    "license": "MIT"
+}
