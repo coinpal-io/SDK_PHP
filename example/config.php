@@ -1,8 +1,8 @@
 <?php
 $config = [
     'debug'=>true,
-    'merchantNo'=>'14',
+    'merchantNo'=>'100000000',
     'version'=>'2',
-    'apiKey'=>'5d6f7b34e5d4c13ab664f66f13c650d82763fa59fb4087d57d4a51aa8d15227c',
+    'apiKey'=>'a67330b7da3e5f2e41cefbd0a984f22aac88c37a8f1222f567a93decdf0dcef2',
     'base_url'=>'https://pay.coinpal.io'
 ];

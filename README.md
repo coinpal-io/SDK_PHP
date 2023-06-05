@@ -3,8 +3,11 @@
 <h3 align="center"> <a target="_blank" href="https://gitee.com/coinpal/docs">document address</a> </h3>
 
 ## Install
+
+After downloading SDK_PHP, enter the SDK_PHP directory and execute the following command
+
 ```php
-$ composer require coinpal/coinpal-php
+$ composer update
 ```
 ## configuration
 Configuration information and instantiation
