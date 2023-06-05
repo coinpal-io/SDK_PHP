@@ -23,19 +23,19 @@ try{
     //
     /*
      * {
-        "version": "1.1",
+        "version": "2",
         "requestId": "20XXXXX",
         "merchantNo": "10XXXXX",
         "orderNo": "30XXXXX",
         "reference": "CWSXXXXXXXXXX",
-        "orderCurrency": "CNY",
-        "orderAmount": "1",
+        "orderCurrency": "USD",
+        "orderAmount": "10.5",
         "nextStep": "redirect",
         "nextStepContent": "https://pay.coinpal.io/cashier/wallet/list/XXXXXXXXXXXXXXXXXXXXXXX",
         "status": "created",
         "respCode": 200,
         "respMessage": "success",
-        "remark": "备注信息"
+        "remark": "Remark"
         }
     */
     //
