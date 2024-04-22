@@ -9,7 +9,7 @@ After downloading SDK_PHP, enter the SDK_PHP directory and execute the following
 ```php
 $ composer update
 ```
-## configuration
+## Configuration
 Configuration information and instantiation
 ```php
 $config = [
@@ -23,20 +23,6 @@ $payment = new \coinpal\Payment();
 ```
 ## Initiate a transaction
 ```php
-
-    function getRequestId(){
-        return 'Q'.date('YmdHis').uniqid();
-    }
-
-    function orderNo() {
-        return 'D'.sprintf( '%04x%04x%04x%04x',
-                mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
-                mt_rand( 0, 0xffff ),
-                mt_rand( 0, 0x0fff ) | 0x4000
-            );
-    }
-
-
     try {
         $payment = $payment->setMerchantNo($config['merchantNo'])->setVersion($config['version'])->setApiKey($config['apiKey'])->setMerchantName($config['merchantName'])->setBaseUrl($config['base_url']);
         $data['requestId'] = getRequestId(); // Unique serial number for each request.
@@ -83,6 +69,18 @@ $payment = new \coinpal\Payment();
         // Record error information
         echo $e->getMessage();
     
+    }
+    
+    function getRequestId(){
+        return 'Q'.date('YmdHis').uniqid();
+    }
+
+    function orderNo() {
+        return 'D'.sprintf( '%04x%04x%04x%04x',
+                mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+                mt_rand( 0, 0xffff ),
+                mt_rand( 0, 0x0fff ) | 0x4000
+            );
     }
 
 ```
