@@ -60,10 +60,12 @@ $payment = new \coinpal\Payment();
             }
         */
         if (empty($result['nextStepContent'])) {
+            // After you request the interface, there is no response data, which may be not supported by the local IP. You need to place the request on the server. Note that the server in Chinese Mainland does not support the request.
             $payment->log('payment request error: ' . json_encode($result));
             return;
         }
         $payment->log('payment response data: ' . json_encode($result));
+        header('Location:'.$result['nextStepContent']);
         return;
     } catch (\coinpal\PaymentException $e) {
         $payment->log($e);
