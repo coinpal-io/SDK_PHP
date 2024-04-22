@@ -1,5 +1,5 @@
-<h1 align="center"> COINPAL PAY </h1>
-<p align="center"> coinpal payment SDK for PHP</p>
+<h1 align="center"> CoinPal Payment </h1>
+<p align="center"> CoinPal Payment SDK for PHP</p>
 <h3 align="center"> <a target="_blank" href="https://gitee.com/coinpal/docs">document address</a> </h3>
 
 ## Install
@@ -13,8 +13,9 @@ $ composer update
 Configuration information and instantiation
 ```php
 $config = [
-    'debug'=>true,//debug mode
-    'version'=>'2',//version
+    'debug'=>true,// debug mode
+    'version'=>'2',// Interface version number
+    'merchantName'=>'CoinPal',// Merchant name displayed on the cash register page
     'merchantNo'=>'Merchant ID',
     'apiKey'=>'merchant key',
 ];
@@ -36,60 +37,97 @@ $payment = new \coinpal\Payment();
     }
 
 
-try{
-    $data['requestId'] = getRequestId();//Request serial number, unique for each request
-    $data['merchantName'] = 'Cionpal';//Cash register page merchant name
-    $data['orderNo'] = orderNo();
-    $data['orderCurrencyType'] = 'fiat';//Currency type crypto or fiat
-    $data['orderCurrency'] = 'USD';//Order Currency
-    $data['orderAmount'] = '10.5';//Order Amount
-    $data['orderDescription'] = 'Iphone 14';//Order description will be used for a specific cashier, page display
-    $data['payerIP'] = '192.168.0.1';//Payer device IP
-    $data['notifyURL'] = 'https://www.order-test.cn/notify.php?order='.$data['orderNo'];//Merchant asynchronous notification address
-    $data['redirectURL'] = 'https://www.order-test.cn';//After the user's payment is successful/expired, the front page callback address.
-    $data['remark'] = 'Remark';//The extended field can be defined by the merchant. After the payment is successful, it will be returned as it is.
-    $result =  $payment->setMerchantNo($config['merchantNo'])->setVersion($config['version'])->setApiKey($config['apiKey'])->create($data);
-    echo "<pre>";print_r($result);echo "</pre>";
-    //Save the gcid and payment link and send it to the front end to call the address
-}catch ( \coinpal\PaymentException $e){
-    $payment->log($e);
-    //log error message
-    echo $e->getMessage();
+    try {
+        $payment = $payment->setMerchantNo($config['merchantNo'])->setVersion($config['version'])->setApiKey($config['apiKey'])->setMerchantName($config['merchantName'])->setBaseUrl($config['base_url']);
+        $data['requestId'] = getRequestId(); // Unique serial number for each request.
+        $data['orderNo'] = orderNo(); // Merchant order number.
+        $data['orderCurrencyType'] = 'fiat'; // Currency type: "fiat" (legal currency) or "crypto" (digital currency).
+        $data['orderCurrency'] = 'USD'; // Order currency.
+        $data['orderAmount'] = '10.5'; // Order amount.
+        $data['notifyURL'] = 'https://www.coinpal.io/notification?order=' . $data['orderNo']; // Merchant's asynchronous notification URL.
+        $data['redirectURL'] = 'https://www.coinpal.io/redirect?order=' . $data['orderNo']; // Callback address of the front page after successful/expired payment by the user.
+        $data['payerIP'] = '192.168.0.1'; // Payer's device IP.
+        $data['orderDescription'] = 'Iphone 14'; // Order description displayed on the cash register page.
+        $data['remark'] = 'Remark'; // Extended field that can be defined by merchants. Will be returned as it is after the payment is successful.
+        $result = $payment->create($data);
+        echo "<pre>";
+        print_r($result);
+        echo "</pre>";
+        // The expected return of the following content
+        //
+        /*
+         * {
+                "version": "2",
+            "requestId": "20XXXXX",
+            "merchantNo": "10XXXXX",
+            "orderNo": "30XXXXX",
+            "reference": "CWSXXXXXXXXXX",
+            "orderCurrency": "USD",
+            "orderAmount": "10.5",
+            "nextStep": "redirect",
+            "nextStepContent": "https://pay.coinpal.io/cashier/wallet/list/XXXXXXXXXXXXXXXXXXXXXXX",
+            "status": "created",
+            "respCode": 200,
+            "respMessage": "success",
+            "remark": "Remark"
+            }
+        */
+        if (empty($result['nextStepContent'])) {
+            $payment->log('payment request error: ' . json_encode($result));
+            return;
+        }
+        $payment->log('payment response data: ' . json_encode($result));
+        return;
+    } catch (\coinpal\PaymentException $e) {
+        $payment->log($e);
+        // Record error information
+        echo $e->getMessage();
+    
+    }
 
-}
 ```
 
 ## Transaction inquiry
 ```
-$payment = new \coinpal\Payment();
-try{
-    $gcid = $result['reference'];//Only returns if the transaction is successfully created
-    $list =  $payment->setMerchantNo($config['merchantNo'])->query($gcid);
-    print_r($list);
-}catch ( \coinpal\PaymentException $e){
+try {
+    $gcid = $result['reference']; // Return after successfully creating transaction
+    $list = $payment->setMerchantNo($config['merchantNo'])->query($gcid);
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+} catch (\glocash\PaymentException $e) {
     $payment->log($e);
-    //log error message
+    // Record error information
     echo $e->getMessage();
 }
 ```
 ## asynchronous notification
 ```
-try{
-    //All status updates can be done here
-    $params =  $payment->setMerchantNo($config['merchantNo'])->setApiKey($config['apiKey'])->notify();
-    //Business logic to find the current order transaction status
-    if($params['status'] == 'paid'){
-        //Order paid successfully
-        //update state operation
-
+try {
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+    $params = $payment->setMerchantNo($config['merchantNo'])->setApiKey($config['apiKey'])->notify();
+    // Process the corresponding logic based on the state
+    if ($params['status'] == 'paid') {
+        // Order payment successful, update status operation instance
+        /*
+            $host = 'localhost';
+            $dbname = 'test';
+            $username = 'root';
+            $password = 'root';
+            $dsn = "mysql:host=$host;dbname=$dbname";
+            $pdo = new PDO($dsn, $username, $password);
+            $sql = "update `order` set `status` = '{$params['status']}' where order_no = '{$params['orderNo']}'";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+        */
     }
-    $payment->log('payment successful');
+    $payment->log('notify data: ' . json_encode($params));
     echo 'success';
-}catch ( \coinpal\PaymentException $e){
+} catch (\coinpal\PaymentException $e) {
     $payment->log($e);
-    //log error message
+    // Record error information
     echo $e->getMessage();
 }
 ```
-
-
