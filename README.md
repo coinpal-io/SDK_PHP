@@ -17,7 +17,7 @@ $config = [
     'version'=>'2',// Interface version number
     'merchantName'=>'CoinPal',// Merchant name displayed on the cash register page
     'merchantNo'=>'Merchant ID',
-    'apiKey'=>'merchant key',
+    'apiKey'=>'Merchant Secret Key',
 ];
 $payment = new \coinpal\Payment();
 ```

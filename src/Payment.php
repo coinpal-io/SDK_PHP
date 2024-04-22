@@ -8,6 +8,7 @@ class Payment
     private $merchantNo = "";
     private $apiKey = "";
     private $version = "";
+    private $merchantName = "";
     const LIVE_URL = 'https://pay.coinpal.io';
     const PAYMENT_URL = '/gateway/pay/checkout';
     const QUERY_URL = '/gateway/pay/query';
@@ -55,7 +56,18 @@ class Payment
     }
 
     /**
-     * @param string $merchantNo
+     * @param string $merchantName
+     * @return Payment
+     */
+    public function setMerchantName(string $merchantName): Payment
+    {
+        $this->merchantName = $merchantName;
+        return $this;
+    }
+
+
+    /**
+     * @param string $version
      * @return Payment
      */
     public function setVersion(string $version): Payment
@@ -96,7 +108,9 @@ class Payment
         $url = $this->getURl(self::PAYMENT_URL);
         $data['version'] = $this->version;
         $data['merchantNo'] = $this->merchantNo;
-
+        if (!empty($this->merchantName)) {
+            $data['merchantName'] = $this->merchantName;
+        }
         if (!isset($data['orderNo']) || empty($data['orderNo'])) {
             throw new PaymentException(PaymentException::ORDER_NO_MUST, PaymentException::CODE_BAD_REQUEST);
         }
