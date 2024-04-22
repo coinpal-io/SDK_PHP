@@ -1,6 +1,6 @@
 <h1 align="center"> CoinPal Payment </h1>
 <p align="center"> CoinPal Payment SDK for PHP</p>
-<h3 align="center"> <a target="_blank" href="https://gitee.com/coinpal/docs">document address</a> </h3>
+<h3 align="center"> <a target="_blank" href="https://docs.coinpal.io/">Document Address</a> </h3>
 
 ## Install
 
@@ -13,9 +13,10 @@ $ composer update
 Configuration information and instantiation
 ```php
 $config = [
-    'debug'=>true,// debug mode
-    'version'=>'2',// Interface version number
-    'merchantName'=>'CoinPal',// Merchant name displayed on the cash register page
+    'debug'=>true, // Debug mode
+    'version'=>'2', // Interface version number
+    'merchantName'=>'CoinPal', // Merchant name displayed on the cash register page
+    'base_url'=>'https://pay.coinpal.io', // CoinPal payment url
     'merchantNo'=>'Merchant ID',
     'apiKey'=>'Merchant Secret Key',
 ];
@@ -99,7 +100,7 @@ try {
     echo $e->getMessage();
 }
 ```
-## asynchronous notification
+## Asynchronous notification
 ```
 try {
     echo "<pre>";
