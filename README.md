@@ -45,18 +45,18 @@ $payment = new \coinpal\Payment();
         /*
          * {
                 "version": "2",
-            "requestId": "20XXXXX",
-            "merchantNo": "10XXXXX",
-            "orderNo": "30XXXXX",
-            "reference": "CWSXXXXXXXXXX",
-            "orderCurrency": "USD",
-            "orderAmount": "10.5",
-            "nextStep": "redirect",
-            "nextStepContent": "https://pay.coinpal.io/cashier/wallet/list/XXXXXXXXXXXXXXXXXXXXXXX",
-            "status": "created",
-            "respCode": 200,
-            "respMessage": "success",
-            "remark": "Remark"
+                "requestId": "20XXXXX",
+                "merchantNo": "10XXXXX",
+                "orderNo": "30XXXXX",
+                "reference": "CWSXXXXXXXXXX",
+                "orderCurrency": "USD",
+                "orderAmount": "10.5",
+                "nextStep": "redirect",
+                "nextStepContent": "https://pay.coinpal.io/cashier/wallet/list/XXXXXXXXXXXXXXXXXXXXXXX",
+                "status": "created",
+                "respCode": 200,
+                "respMessage": "success",
+                "remark": "Remark"
             }
         */
         if (empty($result['nextStepContent'])) {
