@@ -55,7 +55,6 @@ try {
     $sql = $database->generateInsertSql('coinpal_payments_history', $result);
     $database->execSql($sql);
     $payment->log('payment response data: ' . json_encode($result));
-    die();
     header('Location:'.$result['nextStepContent']);
     return;
 } catch (\coinpal\PaymentException $e) {
