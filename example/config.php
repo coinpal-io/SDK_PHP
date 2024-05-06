@@ -1,5 +1,4 @@
 <?php
-
     $config = [
         'debug' => true, // Debug mode
         'version' => '2', // Interface version number
@@ -8,7 +7,7 @@
         'merchantNo' => '100000000',
         'apiKey' => 'a67330b7da3e5f2e41cefbd0a984f22aac88c37a8f1222f567a93decdf0dcef2',
         'db_host' => 'localhost',
-        'db_name' => 'test',
+        'db_name' => 'coinpal',
         'db_user' => 'root',
-        'db_pass' => 'root11',
+        'db_pass' => 'root',
     ];
