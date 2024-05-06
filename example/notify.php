@@ -37,7 +37,7 @@ try {
     // Here is just a way of thinking, specific operational logic, and adjustments based on the project
     if ($result['status'] == 'paid') {
         $updated = date('Y-m-d H:i:s',time());
-        $sql = "update coinpal_payments set `status`='{$result['status']}',`paidAmount`='{$result['paidAmount']}',`paidCurrency`='{$result['paidCurrency']}', paidUsdt='{$result['paidUsdt']}', updated='{$updated}', confirmedTime='{$result['confirmedTime']}' where orderNo = '{$result['orderNo']}'";
+        $sql = "update coinpal_payments set `status`='{$result['status']}',`paidAmount`='{$result['paidAmount']}',`paidCurrency`='{$result['paidCurrency']}', paidUsdt='{$result['paidUsdt']}', updated='{$updated}', confirmedTime='{$result['confirmedTime']}' where requestId = '{$result['requestId']}'";
         $database->execSql($sql);
         $payment->log('payment response data: ' . json_encode($result));
     }

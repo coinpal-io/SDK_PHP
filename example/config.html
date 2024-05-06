@@ -3,48 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初始化配置</title>
+    <title>Initialization Configuration</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
 <div class="container">
-    <h2 class="mt-5">初始化配置</h2>
+    <h2 class="mt-5">Initialization Configuration</h2>
     <form id="configForm">
         <div class="form-group">
-            <label for="host">商户id：</label>
+            <label for="merchantNo">Merchant No:</label>
             <input type="text" class="form-control" id="merchantNo" name="merchantNo" required>
         </div>
         <div class="form-group">
-            <label for="host">密钥：</label>
+            <label for="apiKey">API Key:</label>
             <input type="text" class="form-control" id="apiKey" name="apiKey" required>
         </div>
         <div class="form-group">
-            <label for="host">主机名：</label>
+            <label for="host">Host:</label>
             <input type="text" class="form-control" id="host" name="host" required>
         </div>
         <div class="form-group">
-            <label for="username">用户名：</label>
+            <label for="username">Username:</label>
             <input type="text" class="form-control" id="username" name="username" required>
         </div>
         <div class="form-group">
-            <label for="password">密码：</label>
+            <label for="password">Password:</label>
             <input type="password" class="form-control" id="password" name="password" required>
         </div>
         <div class="form-group">
-            <label for="database">数据库名：</label>
+            <label for="database">Database Name:</label>
             <input type="text" class="form-control" id="database" name="database" required>
         </div>
         <div style="text-align: center;">
-            <button type="submit" class="btn btn-primary">保存配置</button>
+            <button type="submit" class="btn btn-primary">Save Configuration</button>
         </div>
     </form>
 
     <div class="modal" id="errorModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document" style="margin-top: 20%;">
+        <div class="modal-dialog" role="document" style="margin-top: 15%;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">错误</h5>
+                    <h5 class="modal-title">Error</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -53,31 +53,30 @@
                     <p id="errorMessage"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="successModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document" style="margin-top: 15%;">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Success</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-success">Operation Successful!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="modal" id="successModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document" style="margin-top: 20%;">
-        <div class="modal-content">
-            <div class="modal-header bg-success text-white">
-                <h5 class="modal-title">成功</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="text-success">操作成功!</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -10,7 +10,7 @@
     $apiKey = $_POST['apiKey'];
 
     if (empty($host) || empty($username)) {
-        $res['error'] = 'request data empty ';
+        $res['error'] = 'Request data empty.';
         echo json_encode($res, true);
         return;
     }
@@ -18,7 +18,7 @@
     $mysqlConnect = mysqli_connect($host, $username, $password, $database);
 
     if (!$mysqlConnect) {
-        $res['error'] = '数据库连接失败，请检查配置信息并重试 ';
+        $res['error'] = 'Database connection failed. Please check the configuration information and try again.';
         echo json_encode($res, true);
         return;
     }

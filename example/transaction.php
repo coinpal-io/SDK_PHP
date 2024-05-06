@@ -3,6 +3,7 @@ include_once "../vendor/autoload.php";
 include_once "./config.php";
 
 $payment = new \coinpal\Payment();
+
 try {
 //    global $config;
     $data['requestId'] = getRequestId(); // Unique serial number for each request.
