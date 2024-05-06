@@ -9,7 +9,7 @@
 <body>
 
 <div class="container">
-    <h2 class="mt-5">Initialization Configuration</h2>
+    <h2 class="mt-5">Initialization Configuration(<span class="initTag" style="color:#ff0000;">Not Initialized</span>)</h2>
     <form id="configForm">
         <div class="form-group">
             <label for="merchantNo">Merchant No:</label>
@@ -81,7 +81,20 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
+
     $(document).ready(function () {
+        $.ajax({
+            url: "getConfig.php",
+            type: "GET",
+            dataType: "json",
+            success: function(response) {
+                if (response.initTag) {
+                    $('.initTag').html('Initialized');
+                } else {
+                    $('.initTag').html('Not Initialized');
+                }
+            },
+        });
         $('#configForm').submit(function (event) {
             event.preventDefault();
             var formData = $(this).serialize();
@@ -95,6 +108,7 @@
                         $('#errorModal').modal('show');
                     } else {
                         $('#successModal').modal('show');
+                        $('.initTag').html('Initialized');
                     }
                 }
             });

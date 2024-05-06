@@ -31,6 +31,7 @@
     'debug' => true, // Debug mode
     'version' => '2', // Interface version number
     'merchantName' => 'CoinPal', // Merchant name displayed on the cash register page
+    'initTag' => true, // Initialization Tag
     'base_url' => 'https://pay.coinpal.io', // CoinPal payment url
     'merchantNo' => '{$merchantNo}',
     'apiKey' => '{$apiKey}',
