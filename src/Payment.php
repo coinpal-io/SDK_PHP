@@ -103,6 +103,12 @@ class Payment
 
     public function create($data)
     {
+        global $config;
+        $this->merchantNo = $config['merchantNo'];
+        $this->apiKey = $config['apiKey'];
+        $this->version = $config['version'];
+        $this->base_url = $config['base_url'];
+        $this->merchantName = $config['merchantName'];
         $this->log('----------------create transaction--------------------------');
         $this->checkMerchantConfig();
         $url = $this->getURl(self::PAYMENT_URL);

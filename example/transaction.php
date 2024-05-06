@@ -1,9 +1,10 @@
 <?php
 include_once "../vendor/autoload.php";
 include_once "./config.php";
+
 $payment = new \coinpal\Payment();
 try {
-    $payment = $payment->setMerchantNo($config['merchantNo'])->setVersion($config['version'])->setApiKey($config['apiKey'])->setMerchantName($config['merchantName'])->setBaseUrl($config['base_url']);
+//    global $config;
     $data['requestId'] = getRequestId(); // Unique serial number for each request.
     $data['orderNo'] = orderNo(); // Merchant order number.
     $data['orderCurrencyType'] = 'fiat'; // Currency type: "fiat" (legal currency) or "crypto" (digital currency).
@@ -15,6 +16,9 @@ try {
     $data['orderDescription'] = 'Iphone 14'; // Order description displayed on the cash register page.
     $data['remark'] = 'Remark'; // Extended field that can be defined by merchants. Will be returned as it is after the payment is successful.
     $result = $payment->create($data);
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
     echo "<pre>";
     print_r($result);
     echo "</pre>";
@@ -42,7 +46,15 @@ try {
         $payment->log('payment request error: ' . json_encode($result));
         return;
     }
+
+    // The coinpal_payments table and coinpal_payment_history table here only provide an implementation idea. The specific table structure can be adjusted according to your project
+    $database = new \coinpal\Database();
+    $sql = $database->generateInsertSql('coinpal_payments', $result);
+    $database->execSql($sql);
+    $sql = $database->generateInsertSql('coinpal_payments_history', $result);
+    $database->execSql($sql);
     $payment->log('payment response data: ' . json_encode($result));
+    die();
     header('Location:'.$result['nextStepContent']);
     return;
 } catch (\coinpal\PaymentException $e) {
