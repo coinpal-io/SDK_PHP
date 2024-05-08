@@ -83,8 +83,9 @@
 <script>
 
     $(document).ready(function () {
+        var randomNumber = Math.floor(Math.random() * 1000000);
         $.ajax({
-            url: "getConfig.php",
+            url: "getConfig.php?random="+randomNumber,
             type: "GET",
             dataType: "json",
             success: function(response) {

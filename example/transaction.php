@@ -11,8 +11,8 @@ try {
     $data['orderCurrencyType'] = 'fiat'; // Currency type: "fiat" (legal currency) or "crypto" (digital currency).
     $data['orderCurrency'] = 'USD'; // Order currency.
     $data['orderAmount'] = '10.5'; // Order amount.
-    $data['notifyURL'] = 'https://www.coinpal.io/notification?order=' . $data['orderNo']; // Merchant's asynchronous notification URL.
-    $data['redirectURL'] = 'https://www.coinpal.io/redirect?order=' . $data['orderNo']; // Callback address of the front page after successful/expired payment by the user.
+    $data['notifyURL'] = 'https://www.coinpal.io/sdk/notify.php?order=' . $data['orderNo']; // Merchant's asynchronous notification URL.
+    $data['redirectURL'] = 'https://www.coinpal.io/sdk/success.html?order=' . $data['orderNo']; // Callback address of the front page after successful/expired payment by the user.
     $data['payerIP'] = '192.168.0.1'; // Payer's device IP.
     $data['orderDescription'] = 'Iphone 14'; // Order description displayed on the cash register page.
     $data['remark'] = 'Remark'; // Extended field that can be defined by merchants. Will be returned as it is after the payment is successful.
