@@ -27,7 +27,8 @@ Copy and Paste all of the Settings you generated in your Coinpal Dashboard on St
 
 Click Save Configuration.
 
-!> This is just an instance, please download the code and deploy it to your server.  
+> **Tips：**
+> This is just an instance, please download the code and deploy it to your server.
   
 ![](./img/config.png)
 
