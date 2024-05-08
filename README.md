@@ -21,17 +21,19 @@ $ composer update
 
 ## Step 2: Initialization Configuration.
 
-Initialization Configuration Page: [https://www.coinpal.io/sdk/config.html](https://www.coinpal.io/sdk/config.html)
+Initialization Configuration Page Example: [https://www.coinpal.io/sdk/config.html](https://www.coinpal.io/sdk/config.html)
 
 Copy and Paste all of the Settings you generated in your Coinpal Dashboard on Step #1.
 
 Click Save Configuration.
+
+!> This is just an instance, please download the code and deploy it to your server.  
   
 ![](./img/config.png)
 
 ## Step 3: Test Transaction.
 
-Transaction URL: [https://www.coinpal.io/sdk/transaction.php](https://www.coinpal.io/sdk/transaction.php)
+Transaction URL Example: [https://www.coinpal.io/sdk/transaction.php](https://www.coinpal.io/sdk/transaction.php)
 ![](./img/payment.png)
 
 After successful payment, it will jump to the page of successful payment
