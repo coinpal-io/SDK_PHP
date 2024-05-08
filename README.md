@@ -21,14 +21,14 @@ $ composer update
 
 ## Step 2: Initialization Configuration.
 
+> **Tips：**
+> This is just an instance, please download the code and deploy it to your server. Replace the www.coinpal.io domain name with your server domain name.
+
 Initialization Configuration Page Example: [https://www.coinpal.io/sdk/config.html](https://www.coinpal.io/sdk/config.html)
 
 Copy and Paste all of the Settings you generated in your Coinpal Dashboard on Step #1.
 
 Click Save Configuration.
-
-> **Tips：**
-> This is just an instance, please download the code and deploy it to your server.
   
 ![](./img/config.png)
 
