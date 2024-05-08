@@ -11,9 +11,6 @@ class Database
     // Le Brand REAL IT Solutions
     public function __construct()
     {
-        if ( session_status() != PHP_SESSION_ACTIVE ) {
-            session_start();
-        }
         // Check if session variable exists
         if (!isset($_SESSION['coinpal_installed']) || !$_SESSION['coinpal_installed']) {
             // Check if database credentials exist
