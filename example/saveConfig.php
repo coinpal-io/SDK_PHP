@@ -45,6 +45,8 @@ EOD;
     $configFile = 'config.php';
     file_put_contents($configFile, $configContent);
     echo json_encode($res, true);
+    session_start();
+    $_SESSION = [];
     return;
 
 
