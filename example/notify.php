@@ -3,7 +3,6 @@ include_once "../vendor/autoload.php";
 include_once "./config.php";
 $payment = new \coinpal\Payment();
 try {
-    echo "<pre>"; print_r($_POST); echo "</pre>";
     $params = $payment->setMerchantNo($config['merchantNo'])->setApiKey($config['apiKey'])->notify();
     // Process the corresponding logic based on the state
     if ($params['status'] == 'paid' && $params['paidOrderAmount'] >= $params['orderAmount']) {
